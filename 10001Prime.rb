@@ -56,12 +56,15 @@ def find_prime(num)
 	i = range[3]
 	while true
 		(i*i).step(max, i) do |num|
+			puts "current num is #{num}" #string interpolation
 			range[num] = 0
+			puts "now range is #{range.join(",")}"
 		end
 		i = range.find {|num| (num > i)}
 		break if i*i > range.length
 	end
-	range = range.reject{|num| n}
+	range = range.reject{|num| num == 0}
+	p range
 	range[num - 1]
 end
 
