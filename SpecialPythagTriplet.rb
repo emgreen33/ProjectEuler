@@ -10,6 +10,7 @@
 
 def pythag_triplet(num)
 	array = []
+	product = 1
 	(1..num/2-2).each do |i|
 		(i..num/2-1).each do |j|
 			c = num - i - j
@@ -23,7 +24,9 @@ def pythag_triplet(num)
 		end
 	end
 	p array
+	array.each {|x| product *= x}
+	puts product
 end
-product = 1
-pythag_triplet(1000).each {|x| product *= x}
-puts "answer: #{product}"
+
+
+pythag_triplet(1000)

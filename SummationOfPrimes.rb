@@ -16,6 +16,25 @@ def prime?(num)
 	return true 
 end
 
+# def is_prime?(num)
+# 	if num <= 1
+# 		return false #only nums > 1 can be prime
+# 	end
+
+# 	i = 2
+# 	while i < num
+# 		if (num % i) == 0
+# 			return false
+# 		end
+# 		i += 1
+# 	end
+# 	return true
+# end
+
+
+
+
+
 sum = 2
 3.step(2000000,2) do |i| #from 3 to 2000000 increment by 2 (odd nums) checking if they are prime then summing
 	if prime?(i)
