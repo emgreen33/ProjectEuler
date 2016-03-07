@@ -1,4 +1,5 @@
-data = \
+#puts triangle data into accessable blocks
+data = 
 "75
 95 64
 17 47 82
@@ -14,15 +15,22 @@ data = \
 91 71 52 38 17 14 91 43 58 50 27 29 48
 63 66 04 68 89 53 67 30 73 16 69 87 40 31
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23"
- 
+
+#splits data blocks onto newlines 
 rows = data.split("\n")
- 
+puts rows 
+
+#split rows into 
 triangle = rows.map { |x| x.split(" ").map { |x| x.to_i } }
- 
-(triangle.length - 1).downto(0) { |a|
-  0.upto(a-1) { |b|     
-    triangle [a-1][b] += [triangle [a][b], triangle [a][b+1]].max
+print triangle
+
+#go through each triangle's integer row starting at the end (bottom of triangle)
+(triangle.length - 1).downto(0) { 
+  |a| 0.upto(a-1) { #go through each integer in row starting at the first up to the end (a-1)
+    |b| triangle [a-1][b] += [triangle [a][b], triangle [a][b+1]].max #add b and (b+1) to a on row below to and find the max pair on above row
   }  
 }
- 
-puts triangle [0][0]
+
+#print triangle.map {|x| puts x} 
+
+puts triangle [0][0] #puts total of maximum path up to row[0] index[0]
