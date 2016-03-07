@@ -14,5 +14,10 @@ def sum_of_digits(num)
 	puts sum
 end
 
-n = 2**1000
-puts sum_of_digits(n)
+
+def power(a,b)
+	n = a**b
+	sum_of_digits(n)
+end
+
+puts power(2,1000)
