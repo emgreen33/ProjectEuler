@@ -1,58 +1,6 @@
-# What is the greatest product of four adjacent numbers in the 
-# same direction (up, down, left, right, or diagonally) in the 20×20 grid?
 
-def greatest_product(grid, num)
-	max_prod = 1
-	width, height = grid.length(), grid[0].length()
-	0.upto(width-1) do |i|
-		0.upto(height-1) do |j|
-
-			#left to right, right to left
-			if (j + (num - 1) < height)
-				cell_product = 1
-				m = j
-				while (m max_prod)
-					max_prod = cell_product
-				end
-				puts max_prod
-			end
-
-
-			#up and down
-			if (i + (num - 1) < width)
-				cell_product = 1
-				m = i
-				while (m max_prod)
-					max_prod = cell_product
-				end
-				puts max_prod
-			end
-
-			#diagonal left to right
-			if ((i + (num - 1) < width) && (j + (num - 1) < height))
-				cell_product = 1
-				m = 0
-				while (m max_prod)
-					max_prod = cell_product
-				end
-			end
-
-			#diagonal right to left
-			if ((i + (num - 1) < width) && (j - (num - 1) >= 0)
-				cell_product = 1
-				m = 0
-				while (m max_prod)
-					max_prod = cell_product
-				end
-			end
-		end
-	end
-
-	return max_prod
-end
-
-def grid_conversion()
-  a = '08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
+numbers = 
+"08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
 81 49 31 73 55 79 14 29 93 71 40 67 53 88 30 03 49 13 36 65
 52 70 95 23 04 60 11 42 69 24 68 56 01 32 56 71 37 02 36 91
@@ -71,22 +19,48 @@ def grid_conversion()
 04 42 16 73 38 25 39 11 24 94 72 18 08 46 29 32 40 62 76 36
 20 69 36 41 72 30 23 88 34 62 99 69 82 67 59 85 74 04 36 16
 20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54
-01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48'
-
-	grid = []
-	a.split("\n").each do |length|
-		nums = length.split("\s")
-		row = []
-
-		nums.each do |n|
-			row << n.to_i
-		end
-
-		grid << row
-	end
-
-	grid
-end
-
-
+01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48"
  
+# split on newline character
+rows = numbers.split("\n")
+ 
+# split rows into two dimensional array and convert to integers
+grid = rows.map { |x| x.split(" ") .map { |x| x.to_i } }
+ 
+
+max = 0
+product = 0
+
+# horizontal numbers
+(0...16).each do |x| #16+1 different arrays in grid
+  (0...19).each do |y| #19+1 integers in each array in grid
+    product = grid[y][x] * grid[y][x+1] * grid[y][x+2] * grid[y][x+3] 
+    max = product if product > max 
+  end
+end
+ 
+# vertical numbers
+(0...19).each do |x| 
+  (0...16).each do |y| 
+    product = grid[y][x] * grid[y+1][x] * grid[y+2][x] * grid[y+3][x] 
+    max = product if product > max 
+  end
+end
+ 
+# diagonal bottom left to upper right
+(0...16).each do |x| 
+  (0...16).each do |y| 
+    product = grid[y][x] * grid[y+1][x+1] * grid[y+2][x+2] * grid[y+3][x+3] 
+    max = product if product > max 
+  end
+end
+ 
+# diagonal left
+(0...16).each do |x| 
+  (0...16).each do |y| 
+    product = grid[y][x+3] * grid[y+1][x+2] * grid[y+2][x+1] * grid[y+3][x] 
+    max = product if product > max 
+  end
+end
+ 
+puts max
