@@ -102,7 +102,7 @@ number_string =
 53503534226472524250874054075591789781264330331690"
 
 # split on newline character
-sum = number_string.split("\n") \
-  .map { |char| char.to_i}.inject { |agg, n| agg + n }
+sum = number_string.split("\n").map { |char| char.to_i}.inject { |sum_of_num, n| sum_of_num + n }
  
 puts sum.to_s.slice(0..9)
+
