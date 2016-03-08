@@ -1,16 +1,20 @@
-class Integer
-	def factorial
-		(1..self).inject(1) {|product, n| product * n}
-	end
 
-	def grid(x,y)
-		total = (x+y).factorial / (x.factorial) * (y.factorial)
-		total
-	end
+
+def fact(num)
+  if num == 0
+    1
+  else
+    num * fact(num - 1)
+  end
 end
 
-puts grid(20,20)
+def grid_routes(num)
+	total = (fact((num + num)) / (fact(num) * fact(num))).to_s
+	total = total.to_s
+	return total
+end
 
+puts grid_routes(20)
 
 
  
