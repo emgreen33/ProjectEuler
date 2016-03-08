@@ -9,7 +9,7 @@ def fact(num)
 end
 
 def grid_routes(num)
-	total = (fact((num + num)) / (fact(num) * fact(num))).to_s
+	total = (fact((num + num)) / (fact(num) * fact(num)))
 	total = total.to_s
 	return total
 end
