@@ -35,7 +35,7 @@ puts square_of_sum_of_nums(10)
 
 def difference(num)
 	result = square_of_sum_of_nums(num) - sum_of_square_nums(num)
-	result
+	"Result: #{result}"
 end
 
 puts difference(10) 

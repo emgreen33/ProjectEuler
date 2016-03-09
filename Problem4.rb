@@ -12,7 +12,7 @@ def largest_palindrome
 			break if result <= largest_pal
 		end
 	end
-	largest_pal
+	"Largest palindrome: #{largest_pal}"
 end 
 
 puts largest_palindrome
