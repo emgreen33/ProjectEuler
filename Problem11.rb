@@ -39,22 +39,22 @@ def greatest_product(num)
 # horizontal numbers
   (0...16).each do |x| #16+1 different arrays in grid
     (0...19).each do |y| #19+1 integers in each array in grid
-      product = grid[y][x] * grid[y][x+1] * grid[y][x+2] * grid[y][x+3] 
+      product = grid[y][x] * grid[y][x+1] * grid[y][x+2] * grid[y][x+3] #iterating across the x-axis
       max = product if product > max 
     end
   end
  
 # vertical numbers
-  (0...19).each do |x| 
-    (0...16).each do |y| 
-      product = grid[y][x] * grid[y+1][x] * grid[y+2][x] * grid[y+3][x] 
+  (0...19).each do |x| #running vertical arrays 
+    (0...16).each do |y| #16+1 ingegers in vertical column arrays 
+      product = grid[y][x] * grid[y+1][x] * grid[y+2][x] * grid[y+3][x] #iterating down the y-axis
       max = product if product > max 
     end
   end
  
 # diagonal bottom left to upper right
-  (0...16).each do |x| 
-    (0...16).each do |y| 
+  (0...16).each do |x| #16+1 rows 
+    (0...16).each do |y| #going up and across the rows on a positive gradient
       product = grid[y][x] * grid[y+1][x+1] * grid[y+2][x+2] * grid[y+3][x+3] 
       max = product if product > max 
     end
@@ -62,7 +62,7 @@ def greatest_product(num)
  
 # diagonal left
   (0...16).each do |x| 
-    (0...16).each do |y| 
+    (0...16).each do |y| #going on a negative gradient working backwards from x+3 to x and positive on y-axis
       product = grid[y][x+3] * grid[y+1][x+2] * grid[y+2][x+1] * grid[y+3][x] 
       max = product if product > max 
     end
