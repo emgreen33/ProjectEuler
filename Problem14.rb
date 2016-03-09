@@ -3,27 +3,6 @@
 # n = (3 * n) + 1 (n is odd)
 
 
-# def longest_length(num)
-# 	new_num = self
-# 	return new_num if new_num <= 1
-# 	length = 1
-# 	while new_num != 1
-# 		if new_num % 2 == 0
-# 			new_num /= 2
-# 		else
-# 			new_num = (3 * new_num) + 1
-# 		end
-# 		length += 1
-# 	end
-# 	length
-# end
-
-# def collatz_num(num)
-# 	1.upto(num) do |num|
-# 		length = num.longest_length 
-# 	end
-# end
-
 def longest_length(num)
 	length = 1
 	while (num > 1)
