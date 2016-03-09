@@ -18,17 +18,17 @@ end
 
 puts smallest_multiple(20)
 
-def gcd(a,b)
+def greatest_common_denominator(a,b)
 	if (b == 0)
 		a
 	else
-		gcd(b, a%b)
+		greatest_common_denominator(b, a%b)
 	end
 end
 
-def lcm(a, b)
-	(a/ gcd(a,b)) * b
+def lowest_common_multiplier(a, b)
+	(a/ greatest_common_denominator(a,b)) * b
 end
 
-puts (1..20).inject {|x,y| lcm(x,y)}
+puts (1..20).inject {|x,y| lowest_common_multiplier(x,y)}
 

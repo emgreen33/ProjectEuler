@@ -14,78 +14,7 @@
 # 28: 1,2,4,7,14,28
 # We can see that 28 is the first triangle number to have over five divisors.
 
-# What is the value of the first triangle number to have over five hundred divisors?
-
-# def num_divisors(num)
-# 	divisors = 1
-# 	count = 0
-	
-# 	if num % 2 == 0
-# 		count += 1
-# 		num = num/2
-# 	end
-
-# 	divisors = divisors * (count + 1)
-# 	p = 3
-# 	while num != 1
-# 		count = 0
-# 		if num % p == 0
-# 			count += 1
-# 			num = num/p
-# 		end
-# 		divisors = divisors * (count + 1)
-# 		p += 2
-# 	end
-# 	divisors
-# end
-
-# def find_triangle_index(factor_limit)
-# 	num = 1
-# 	lnum, rnum = num_divisors(num), num_divisors(num+1)
-# 	if (lnum * rnum < 500)
-# 		num += 1
-# 		lnum, rnum = rnum, num_divisors(num+1)
-# 	end
-# 	return num
-# end
-
-# puts find_triangle_index(500)
-
-
-
-# def triangle_num(num)
-# 	sum = 0
-# 	(1..num).each {|num| sum += num}
-# 	return sum
-# end
-
-# def factors(num)
-# 	array = []
-# 	i = 1
-# 	max = num
-# 	if (num == 1)
-# 		return [1]
-# 	end
-# 	while (i < max)
-# 		if (num % i == 0) #i is a factor
-# 			array.push(i)
-# 			if (i != num/i) #if not square, get the quotient which is a factor as well
-# 				array.push(num/i) 
-# 			end
-# 			max = num/i
-# 		end
-# 		i += 1
-# 	end
-# 	return array.sort()
-# end 
-
-# i = 1
-# while(factors(triangle_num(i)).length <= 500)
-# 	i+= 1
-# end
-
-# puts triangle_num(500)
-
+#Q: What is the value of the first triangle number to have over five hundred divisors?
 
 def triNum(n)
   sum = 0

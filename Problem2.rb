@@ -13,6 +13,7 @@ def fib_sum(num)
 		i, previous_i = previous_i, previous_i + i 
 	end
 	total
+	"Total: #{total}"
 end
 
 puts fib_sum(4000000)
