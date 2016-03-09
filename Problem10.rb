@@ -15,7 +15,7 @@ def prime?(num)
 	return true 
 end
 
-# def is_prime?(num)
+# def prime?(num)
 # 	if num <= 1
 # 		return false #only nums > 1 can be prime
 # 	end

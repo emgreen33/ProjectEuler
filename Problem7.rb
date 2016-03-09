@@ -28,8 +28,11 @@ end
 
 puts nth_Prime(6)
 puts nth_Prime(10001)
+<<<<<<< HEAD
 
 
 
 
 
+=======
+>>>>>>> origin/master

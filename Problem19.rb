@@ -11,11 +11,24 @@
 
 # A leap year occurs on any year evenly divisible by 4, 
 # but not on a century unless it is divisible by 400.
+<<<<<<< HEAD
 
 # How many Sundays fell on the first of the month during 
 # the twentieth century (1 Jan 1901 to 31 Dec 2000)?
 
 
+=======
+# How many Sundays fell on the first of the month during 
+# the twentieth century (1 Jan 1901 to 31 Dec 2000)?
+
+# one that imports the date time
+# one that does it manually
+
+
+
+# days = [t,w,t,f,s,s,m]
+# until hit no. of first array 
+>>>>>>> origin/master
 
 year = 1901
 month = 0
