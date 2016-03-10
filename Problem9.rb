@@ -19,9 +19,10 @@ def pythag_triplet(num)
 			end
 		end
 	end
-	p array
+	#p array
+	puts "a, b, c are: #{array}"
 	array.each {|x| product *= x}
-	puts product
+	puts "The product is: #{product}"
 end
 
 
