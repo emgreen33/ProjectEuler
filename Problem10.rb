@@ -16,8 +16,6 @@ def is_a_prime?(num)
 	return true 
 end
 
-
-
 def sum_of_primes(num)
 	sum_total = 2
 	3.step(num, 2) do |i|
