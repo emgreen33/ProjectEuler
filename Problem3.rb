@@ -15,7 +15,7 @@ def largest_prime_factor(num)
 		end
 		prime += 2
 	end
-	return largest_factor
+	"Largest prime factor: #{largest_factor}"
 end
 
 puts largest_prime_factor(13195)

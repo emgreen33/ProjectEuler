@@ -11,13 +11,13 @@
 def sum_of_digits(num)
 	sum = 0
 	num.to_s.each_char { |x| sum = sum + x.to_i}
-	puts sum
+	puts "Sum of digits: #{sum}"
 end
 
 
 def power(a,b)
 	n = a**b
-	sum_of_digits(n)
+	sum = sum_of_digits(n)
 end
 
 puts power(2,1000)

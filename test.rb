@@ -1,79 +1,106 @@
+# If the numbers 1 to 5 are written out in words: one, two, three, four, five, 
+# then there are 3 + 3 + 5 + 4 + 4 = 19 letters used in total.
 
-# 1 Jan 1900 was a Monday.
-# Thirty days has September, April, June, November.
-# All the rest have thirty-one,
-# Saving February alone,
-# Which has twenty-eight, rain or shine.
-# And on leap years, twenty-nine.
+# Q: If all the numbers from 1 to 1000 (one thousand) inclusive were written 
+# out in words, how many letters would be used?
 
 
-# Q: How many Sundays fell on the first of the month during 
-# the twentieth century (1 Jan 1901 to 31 Dec 2000)?
+# NOTE: Do not count spaces or hyphens. For example, 342 (three hundred and forty-two) 
+# contains 23 letters and 115 (one hundred and fifteen) contains 20 letters. 
+# The use of "and" when writing out numbers is in compliance with British usage.
 
-def how_many_sundays(date)
-   year = 1901
-   month = 0
-   day_of_the_month = 1
-   day_of_the_week = 3
-   is_leap_year = false
-   days_in_the_months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-   days_in_this_month = 31 
+words = {
+  1 => "one",
+  2 => "two",
+  3 => "three",
+  4 => "four",
+  5 => "five",
+  6 => "six",
+  7 => "seven",
+  8 => "eight",
+  9 => "nine",
+  10 => "ten",
+  11 => "eleven",
+  12 => "twelve",
+  13 => "thirteen",
+  14 => "fourteen",
+  15 => "fifteen",
+  16 => "sixteen",
+  17 => "seventeen",
+  18 => "eighteen",
+  19 => "nineteen",
+  20 => "twenty",
+  30 => "thirty",
+  40 => "forty",
+  50 => "fifty",
+  60 => "sixty",
+  70 => "seventy",
+  80 => "eighty",
+  90 => "ninety",
+  1000 => "onethousand"
+}
 
-   number_of_sundays = 0
-
-   while (year < 2001)
-
-      if month == 12
-         year += 1      
-         month = 0
-         days_in_this_month = days_in_the_months[ month ]
-
-         # A leap year occurs on any year evenly divisible by 4, 
-         # but not on a century unless it is divisible by 400.
-         if (year % 4) == 0
-            if (year % 100) != 0
-               is_leap_year = true
-            else
-               if (year % 400) == 0
-                  is_leap_year = true
-               else
-                  is_leap_year = false
-               end
-            end
-         else
-            is_leap_year = false
-         end
-      end
-
-      if day_of_the_month > days_in_this_month
-         month += 1
-         day_of_the_month = 1
-      
-         if month != 12
-            days_in_this_month = days_in_the_months[month]
-         end
-
-         #account for leap years so Feb has an additional day 
-         if (month == 1) && is_leap_year
-            days_in_this_month += 1         
-         end
-      end
-      #how many sundays fell on the first of the month 
-      if (day_of_the_week == 1) && (day_of_the_month == 1)
-         number_of_sundays += 1
-         puts "Sundays on the first of the month : Year: " + year.to_s + " Month: " + (month + 1).to_s 
-      end
-
-      day_of_the_month += 1 
-      day_of_the_week += 1
-
-      if day_of_the_week == 8
-         day_of_the_week = 1
-      end
-   end
-
-   "The number of Sundays are: " + number_of_sundays.to_s
+class Fixnum
+  def to_english(words)
+    str = ""
+    if self >= 100 && self < 1000
+      str = "#{words[(self/100)]}hundred"
+      if self % 100 > 0
+        str = "#{str}and#{(self % 100).to_english(words)}"
+      end 
+    elsif self > 20
+      str = "#{words[(self / 10) * 10]}#{words[self % 10]}"
+    # elsif self == 1000
+    #   str = "onethousand"
+    else
+      str = words[self]
+    end
+    str
+  end
 end
 
-puts how_many_sundays(2001)
+
+def num_of_letters(num)
+  words = {
+  1 => "one",
+  2 => "two",
+  3 => "three",
+  4 => "four",
+  5 => "five",
+  6 => "six",
+  7 => "seven",
+  8 => "eight",
+  9 => "nine",
+  10 => "ten",
+  11 => "eleven",
+  12 => "twelve",
+  13 => "thirteen",
+  14 => "fourteen",
+  15 => "fifteen",
+  16 => "sixteen",
+  17 => "seventeen",
+  18 => "eighteen",
+  19 => "nineteen",
+  20 => "twenty",
+  30 => "thirty",
+  40 => "forty",
+  50 => "fifty",
+  60 => "sixty",
+  70 => "seventy",
+  80 => "eighty",
+  90 => "ninety",
+  1000 => "onethousand"
+  }
+  total = 0
+  (1..num).each do |i|
+    thisNum = i.to_english(words).size
+    total += thisNum
+  end
+
+  "The total number of letters used: #{total}"
+end
+
+
+puts num_of_letters(1000)
+
 

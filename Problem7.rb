@@ -23,7 +23,7 @@ def nth_Prime(num)
 			prime_array << i
 		end
 	end
-	prime_array.last
+	"The nth prime number is: #{prime_array.last}"
 end
 
 puts nth_Prime(6)

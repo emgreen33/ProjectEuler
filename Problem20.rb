@@ -8,7 +8,7 @@
 def sum_of_digits(num)
 	sum = 0
 	num.downto(1).inject(:*).to_s.each_char { |x| sum=sum+x.to_i }
-	puts sum
+	"Sum of digits: #{sum}"
 end
 
 puts sum_of_digits(100)

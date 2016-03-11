@@ -1,5 +1,16 @@
-#puts triangle data into accessable blocks
-data = 
+#By starting at the top of the triangle below and moving to adjacent numbers 
+#on the row below, the maximum total from top to bottom is 23.
+
+#3
+#7 4
+#2 4 6
+#8 5 9 3
+
+#That is, 3 + 7 + 4 + 9 = 23.
+
+#Q: Find the maximum total from top to bottom of the triangle below:
+
+a = 
 "75
 95 64
 17 47 82
@@ -17,20 +28,23 @@ data =
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23"
 
 #splits data blocks onto newlines 
-rows = data.split("\n")
-puts rows 
+def max_total(data)
+   rows = data.split("\n") 
 
-#split rows into 
-triangle = rows.map { |x| x.split(" ").map { |x| x.to_i } }
-print triangle
+   #split rows and convert to integers
+   triangle = rows.map { |x| x.split(" ").map { |x| x.to_i } }
 
-#go through each triangle's integer row starting at the end (bottom of triangle)
-(triangle.length - 1).downto(0) { 
-  |a| 0.upto(a-1) { #go through each integer in row starting at the first up to the end (a-1)
-    |b| triangle [a-1][b] += [triangle [a][b], triangle [a][b+1]].max #add b and (b+1) to a on row below to and find the max pair on above row
-  }  
-}
+   #go through each triangle's integer row starting at the end (bottom of triangle)
+   (triangle.length - 1).downto(0) { 
+   |a| 0.upto(a-1) { #go through each integer in row starting at the first up to the end (a-1)
+      |b| triangle [a-1][b] += [triangle [a][b], triangle [a][b+1]].max #add b and (b+1) to a on row below to and find the max pair on above row
+      }  
+   }
 
-#print triangle.map {|x| puts x} 
+   "Maximum total is: #{triangle[0][0]}" #puts total of maximum path up to row[0] index[0]
+end
 
-puts triangle [0][0] #puts total of maximum path up to row[0] index[0]
+puts max_total(a)
+
+
+
