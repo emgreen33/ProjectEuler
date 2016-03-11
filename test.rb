@@ -1,74 +1,86 @@
-# What is the greatest product of four adjacent numbers in the 
-# same direction (up, down, left, right, or diagonally) in 
-# the 20×20 grid?
+# Problem 19
+# You are given the following information, but you may 
+# prefer to do some research for yourself.
 
-numbers = 
-"08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
-49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
-81 49 31 73 55 79 14 29 93 71 40 67 53 88 30 03 49 13 36 65
-52 70 95 23 04 60 11 42 69 24 68 56 01 32 56 71 37 02 36 91
-22 31 16 71 51 67 63 89 41 92 36 54 22 40 40 28 66 33 13 80
-24 47 32 60 99 03 45 02 44 75 33 53 78 36 84 20 35 17 12 50
-32 98 81 28 64 23 67 10 26 38 40 67 59 54 70 66 18 38 64 70
-67 26 20 68 02 62 12 20 95 63 94 39 63 08 40 91 66 49 94 21
-24 55 58 05 66 73 99 26 97 17 78 78 96 83 14 88 34 89 63 72
-21 36 23 09 75 00 76 44 20 45 35 14 00 61 33 97 34 31 33 95
-78 17 53 28 22 75 31 67 15 94 03 80 04 62 16 14 09 53 56 92
-16 39 05 42 96 35 31 47 55 58 88 24 00 17 54 24 36 29 85 57
-86 56 00 48 35 71 89 07 05 44 44 37 44 60 21 58 51 54 17 58
-19 80 81 68 05 94 47 69 28 73 92 13 86 52 17 77 04 89 55 40
-04 52 08 83 97 35 99 16 07 97 57 32 16 26 26 79 33 27 98 66
-88 36 68 87 57 62 20 72 03 46 33 67 46 55 12 32 63 93 53 69
-04 42 16 73 38 25 39 11 24 94 72 18 08 46 29 32 40 62 76 36
-20 69 36 41 72 30 23 88 34 62 99 69 82 67 59 85 74 04 36 16
-20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54
-01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48"
+# 1 Jan 1900 was a Monday.
+# Thirty days has September, April, June, November.
+# All the rest have thirty-one,
+# Saving February alone,
+# Which has twenty-eight, rain or shine.
+# And on leap years, twenty-nine.
+
+# A leap year occurs on any year evenly divisible by 4, 
+# but not on a century unless it is divisible by 400.
+# How many Sundays fell on the first of the month during 
+# the twentieth century (1 Jan 1901 to 31 Dec 2000)?
+
+# one that imports the date time
+# one that does it manually
 
 
-def greatest_product(num)
-  # split on newline character
-  rows = num.split("\n")
- 
-  # split rows into two dimensional array and convert to integers
-  grid = rows.map { |x| x.split(" ") .map { |x| x.to_i } }
- 
 
-  max = 0
-  product = 0
+# days = [t,w,t,f,s,s,m]
+# until hit no. of first array 
 
-# horizontal numbers
-  (0...16).each do |x| #16+1 different arrays in grid
-    (0...19).each do |y| #19+1 integers in each array in grid
-      product = grid[y][x] * grid[y][x+1] * grid[y][x+2] * grid[y][x+3] 
-      max = product if product > max 
-    end
-  end
- 
-# vertical numbers
-  (0...19).each do |x| 
-    (0...16).each do |y| 
-      product = grid[y][x] * grid[y+1][x] * grid[y+2][x] * grid[y+3][x] 
-      max = product if product > max 
-    end
-  end
- 
-# diagonal bottom left to upper right
-  (0...16).each do |x| 
-    (0...16).each do |y| 
-      product = grid[y][x] * grid[y+1][x+1] * grid[y+2][x+2] * grid[y+3][x+3] 
-      max = product if product > max 
-    end
-  end
- 
-# diagonal left
-  (0...16).each do |x| 
-    (0...16).each do |y| 
-      product = grid[y][x+3] * grid[y+1][x+2] * grid[y+2][x+1] * grid[y+3][x] 
-      max = product if product > max 
-    end
-  end
- 
-  "Max: #{max}"
+year = 1901
+month = 0
+day_of_the_month = 1
+day_of_the_week = 3
+is_leap_year = false
+days_in_the_months = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
+days_in_this_month = 31 
+
+number_of_sundays = 0
+
+while ( year < 2001 )
+   if (day_of_the_week == 1) && (day_of_the_month == 1)
+      number_of_sundays += 1
+      puts "Year: " + year.to_s + " Month: " + (month + 1).to_s + " Day of the month: " + day_of_the_month.to_s + " Day of the week: " + day_of_the_week.to_s
+   end
+
+   day_of_the_month += 1
+
+   if month == 12
+      year += 1      
+      month = 0
+      days_in_this_month = days_in_the_months[month]
+
+      if (year % 4) == 0
+         if (year % 100) != 0
+            is_leap_year = true
+         else
+            if (year % 400) == 0
+               is_leap_year = true
+            else
+               is_leap_year = false
+            end
+         end
+      else
+         is_leap_year = false
+      end
+   end
+
+   if day_of_the_month > days_in_this_month
+      month += 1
+      day_of_the_month = 1
+      
+      if month != 12
+         days_in_this_month = days_in_the_months[ month ]
+      end
+
+      if (month == 1) && is_leap_year
+         days_in_this_month += 1         
+      end
+   end
+
+   
+
+   day_of_the_week += 1
+
+   if day_of_the_week == 8
+      day_of_the_week = 1
+   end
 end
 
-puts greatest_product(numbers)
+puts "The number of Sundays is: " + number_of_sundays.to_s
+

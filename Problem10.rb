@@ -1,13 +1,14 @@
 # The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
 # Find the sum of all the primes below two million.
 
-def prime?(num)
+# integrate the Math. module to find sqrt function 
+
+def is_a_prime?(num)
 	if (num == 1)
 		return false
 	end
-									#sqrt(num) returns the non-negative sqrt of num
-	max_num = Math.sqrt(num).floor #floor returns the largest integer less than or equal to float.
-	2.upto(max_num) do |i|
+	max_num = Math.sqrt(num) #Math module contains module functions for basic trigonometric funcs
+	2.upto(max_num) do |i|		##sqrt(num) returns the non-negative sqrt of num
 		if (num % i == 0)
 			return false 
 		end
@@ -15,32 +16,18 @@ def prime?(num)
 	return true 
 end
 
-# def prime?(num)
-# 	if num <= 1
-# 		return false #only nums > 1 can be prime
-# 	end
-
-# 	i = 2
-# 	while i < num
-# 		if (num % i) == 0
-# 			return false
-# 		end
-# 		i += 1
-# 	end
-# 	return true
-# end
 
 
-
-
-
-sum = 2
-3.step(2000000,2) do |i| #from 3 to 2000000 increment by 2 (odd nums) checking if they are prime then summing
-	if prime?(i)
-		sum += i
+def sum_of_primes(num)
+	sum_total = 2
+	3.step(num, 2) do |i|
+		if is_a_prime?(i)
+			sum_total += i
+		end
 	end
+	"Sum of primes up to num: #{sum_total}"
 end
 
-puts "answer : #{sum}"
+puts sum_of_primes(2000000)
 
 
