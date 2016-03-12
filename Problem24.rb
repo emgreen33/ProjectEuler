@@ -14,11 +14,11 @@ class Integer
   end
 end
  
-def how_many_lexis(nth)
+def how_many_lexis(nth, n)
   digits = "0123456789"
   combos = ""
-  (0..9).each do |i|
-    facts = (9-i).factorial
+  (0..n).each do |i|
+    facts = (n - i).factorial
     num = nth / facts
     combos += digits[num]
     nth -= facts * num
@@ -27,4 +27,4 @@ def how_many_lexis(nth)
   "Total number of lexiographic permutations: #{combos}"
 end
 
-puts how_many_lexis(999999)
+puts how_many_lexis(999999, 9)
