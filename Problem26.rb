@@ -13,15 +13,13 @@
 # Where 0.1(6) means 0.166666..., and has a 1-digit recurring cycle. It can be seen 
 # that 1/7 has a 6-digit recurring cycle.
 
-# Q: Find the value of d < 1000 for which 1/d contains the longest recurring 
-# cycle in its decimal fraction part.
-
-# def divide n, d, repo = []
+# Solution 1:
+# def divide(n, d, repo = [])
 #   return repo.size - repo.index(n) if repo.include? n
 #   divide 10 * (n - (n / d) * d), d, repo << n
 # end
 
-# highest = {"d" => 1, "count" => 1}
+# recurring_cycle_length = {"d" => 1, "count" => 1}
 
 # (1..499).each do |i|
 #   x     = i * 2 + 1
@@ -31,32 +29,41 @@
 #   end
 # end
 
-# puts highest["d"]
 
-require 'mathn'
+# Q: Find the value of d < 1000 for which 1/d contains the longest recurring 
+# cycle in its decimal fraction part.
 
-def recurring_cycle_length(n)
-  return 0 if n % 2 == 0 or n % 5 == 0
-   
-  i = 1
-  until (((10**i) - 1) % n) == 0
-    i += 1
+
+num = 1
+recurring_length = 10000
+a = []
+b = []
+
+while (num < 1000) do
+  x = 1
+  longest = ""
+  while (longest.size <= recurring_length) do
+    x *= 10
+    val = x / num
+    longest << val.to_s
+    x = x % num
   end
-   
-  i
+  a << longest
+  num += 1
 end
- 
-num = 0
-max_length = 0
- 
-Prime.each { |x| 
-  break if x >= 1_000
-   
-  rcl = recurring_cycle_length(x)
-  if rcl > max_length    
-    max_length, num = rcl, x
+
+a.each_with_index do |x, index|
+  comstr = ""
+  xstr = ""
+  comstr = x[50..100]
+  i=101
+  while(comstr != xstr || i== recurring_length) do
+    xstr = x[i..i+50]
+    i += 1  
   end
-}
- 
-puts max_length
-puts num
+  b << i  
+end
+
+puts b.each_with_index.max
+
+
