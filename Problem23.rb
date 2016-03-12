@@ -25,8 +25,8 @@ def sum_proper_divisors(num)
   sum
 end
 
-def next_abundant(list)
-  i = list.last + 1
+def next_abundant(abundants)
+  i = abundants.last + 1
   while (sum_proper_divisors(i) <= i)
     i += 1
   end
@@ -34,23 +34,23 @@ def next_abundant(list)
 end
 
 def sum_prop_divisors_not_abundant(num)
-  list  = [12]
-  sums_keys  = {24 => nil}
+  abundants  = [12]
+  sums_of_two_abs  = {24 => nil}
   total = 0
 
-  while list.last < num do
-    list << next_abundant(list)
-    list.each do |i|
-      sum = list.last + i
+  while abundants.last < num do
+    abundants << next_abundant(abundants)
+    abundants.each do |i|
+      sum = abundants.last + i
       if sum > num
         break
       end
-      sums_keys.store sum, nil
+      sums_of_two_abs.store sum, nil
     end
   end
 
   num.times do |i|
-    total += i unless sums_keys.include? i
+    total += i unless sums_of_two_abs.include? i
   end
 
   "Sum of all pos nums not be written as sum of two abundanet nums: #{total}" 
