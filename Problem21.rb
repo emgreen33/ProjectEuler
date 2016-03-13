@@ -25,16 +25,16 @@ def amicable_num?(a, amic_nums)
 end
 
 def sum_of_amics(num)
-  amic_nums  = []
-  total = 0
-
-  num.times do |i|
+  amic_nums = []
+  sum = 0
+  i = 1
+  while i < num
     if amicable_num?(i, amic_nums)
-      total += (i + amic_nums[i])
+      sum += (i + amic_nums[i])
     end
+    i += 1
   end
-
-  "Sum of all amicable nums: #{total}"
+  "Sum of all amicable nums: #{sum}"
 end
 
 puts sum_of_amics(10000)

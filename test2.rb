@@ -1,45 +1,40 @@
-# Euler discovered the remarkable quadratic formula:
+# Let d(n) be defined as the sum of proper divisors of n (numbers less than 
+# n which divide evenly into n).
+# If d(a) = b and d(b) = a, where a ≠ b, then a and b are an amicable pair and 
+# each of a and b are called amicable numbers.
 
-# n² + n + 41
+# For example, the proper divisors of 220 are 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 and 110; 
+# therefore d(220) = 284. The proper divisors of 284 are 1, 2, 4, 71 and 142; so d(284) = 220.
 
-# It turns out that the formula will produce 40 primes for the consecutive values n = 0 to 39. 
-# However, when n = 40, 402 + 40 + 41 = 40(40 + 1) + 41 is divisible by 41, and certainly 
-# when n = 41, 41² + 41 + 41 is clearly divisible by 41.
+# Q: Evaluate the sum of all the amicable numbers under 10000.
 
-# The incredible formula  n² − 79n + 1601 was discovered, which produces 80 primes for the 
-# consecutive values n = 0 to 79. The product of the coefficients, −79 and 1601, is −126479.
 
-# Considering quadratics of the form:
-
-# n² + an + b, where |a| < 1000 and |b| < 1000
-
-# where |n| is the modulus/absolute value of n
-# e.g. |11| = 11 and |−4| = 4
-# Find the product of the coefficients, a and b, for the quadratic expression that produces 
-# the maximum number of primes for consecutive values of n, starting with n = 0.
-
-require 'mathn'
-
-def max_num_primes(a_num,b_num)
-	ab_product = 0
-	max_primes = 0
-	max_a = 0	
-	max_b = 0
-	(-a_num..a_num).each do |a|
-		(2..b_num).each do |b|
-			i = 0
-			while (((i** 2) + (a * i) + b).prime?)
-      			i+=1
-			end
-			max_primes, ab_product, max_a, max_b = i, a * b, a, b if (i > max_primes)
-		end
-	end
-	p max_a  
-	p max_b 
-	"Answer: #{max_primes} #{ab_product}"
-
+def d(num)
+  total = 1
+  (2..Math.sqrt(num)).each do |i|
+    if num % i == 0
+      total += (num / i) + i
+    end
+  end
+  total
 end
 
-puts max_num_primes(1000,1000)
+def amicable_num?(a, amic_nums)
+  amic_nums[a] = b = d(a)
+  a != b and a == amic_nums[b]
+end
 
+def sum_of_amics(num)
+  amic_nums = []
+  sum = 0
+  i = 1
+  while i < num
+    if amicable_num?(i, amic_nums)
+      sum += (i + amic_nums[i])
+    end
+    i += 1
+  end
+  "Sum of all amicable nums: #{sum}"
+end
 
+puts sum_of_amics(10000)
