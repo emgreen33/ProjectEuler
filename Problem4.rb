@@ -9,7 +9,9 @@ def largest_palindrome
 		i.downto(100) do |j|
 			result = i * j
 			largest_pal = result if result > largest_pal && result.to_s == result.to_s.reverse
-			break if result <= largest_pal
+			if result<= largest_pal 
+				break
+			end
 		end
 	end
 	"Largest palindrome: #{largest_pal}"
